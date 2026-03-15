@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CloudDrive Pilot - 5G Remote Driving Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+            },
+            animation: {
+              "fade-in": "fadeIn 0.5s ease-out",
+              "slide-up": "slideUp 0.5s ease-out",
+            },
+            keyframes: {
+              fadeIn: {
+                "0%": { opacity: "0" },
+                "100%": { opacity: "1" },
+              },
+              slideUp: {
+                "0%": { transform: "translateY(10px)", opacity: "0" },
+                "100%": { transform: "translateY(0)", opacity: "1" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        margin: 0;
+        background-color: #020617; /* Fallback for slate-950 */
+      }
+    </style>
+    <!-- 百度地图 GL API -->
+    <script src="//api.map.baidu.com/api?type=webgl&v=1.0&ak=lQXHeOGPjI7YxGTZb3wIoOLk21HTulxv"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
