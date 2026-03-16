@@ -1,152 +1,358 @@
-# 5G 远程驾驶云控平台 (5G Remote Driving Cloud Platform)
+<div align="center">
 
-## 📖 1. 项目目录与文件说明 (Project Structure)
+<img src="https://img.shields.io/badge/5G-Remote_Driving-FF6B6B?style=for-the-badge&logo=car&logoColor=white" alt="5G Remote Driving"/>
 
-了解每个文件是做什么的，有助于您快速定位修改位置。
+# 🚗 5G 远程驾驶云控平台
 
-```text
-/
-├── index.html                   # 入口 HTML，引入了百度地图 GL JS SDK
-├── index.tsx                    # React 入口文件
-├── App.tsx                      # 主应用逻辑，处理登录、页面路由切换 (Login/Monitor/Control)
-├── types.ts                     # 数据字典 (定义了车辆数据的格式、状态枚举、日志格式)
-├── metadata.json                # 权限配置文件 (摄像头、麦克风、地理位置)
+### 5G Remote Driving Cloud Platform
+
+<p>
+  <img src="https://img.shields.io/badge/React-19.2.0-61DAFB?style=flat-square&logo=react&logoColor=white" alt="React"/>
+  <img src="https://img.shields.io/badge/Vite-7.2.4-646CFF?style=flat-square&logo=vite&logoColor=white" alt="Vite"/>
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript"/>
+  <img src="https://img.shields.io/badge/WebRTC-333333?style=flat-square&logo=webrtc&logoColor=white" alt="WebRTC"/>
+  <img src="https://img.shields.io/badge/WebSocket-010101?style=flat-square&logo=socket.io&logoColor=white" alt="WebSocket"/>
+  <img src="https://img.shields.io/badge/Baidu_Map-2932E1?style=flat-square&logo=baidu&logoColor=white" alt="Baidu Map"/>
+  <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License"/>
+</p>
+
+<h3>实时监控 · 远程控制 · 视频流传输 · 3D地图可视化</h3>
+
+<p>
+  <a href="#-快速开始"><b>快速开始</b></a> • 
+  <a href="#-功能特性"><b>功能特性</b></a> • 
+  <a href="#-项目结构"><b>项目结构</b></a> • 
+  <a href="#-贡献指南"><b>贡献指南</b></a>
+</p>
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"/>
+
+</div>
+
+---
+
+## 🎯 项目简介
+
+基于 **5G 低延迟网络** 的远程驾驶云控平台，实现车辆的实时监控与远程控制。通过 WebRTC 技术传输高清视频流，结合百度地图 3D 可视化，打造沉浸式远程驾驶体验。
+
+---
+
+## ✨ 功能特性
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### 🎥 实时视频流
+- ✔️ WebRTC 低延迟视频传输
+- ✔️ 支持模拟视频源切换
+- ✔️ 多路视频同步播放
+- ✔️ 自适应码率调节
+
+</td>
+<td width="50%" valign="top">
+
+### 🗺️ 3D 地图可视化
+- ✔️ 百度地图 GL JS SDK
+- ✔️ 车辆实时位置追踪
+- ✔️ 3D 视角与车辆跟随
+- ✔️ 轨迹回放功能
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+### 🎮 远程驾驶控制
+- ✔️ 实时方向盘控制
+- ✔️ 仪表盘数据展示
+- ✔️ 低延迟指令传输
+- ✔️ 安全接管机制
+
+</td>
+<td width="50%" valign="top">
+
+### 📊 数据监控大屏
+- ✔️ 车辆遥测数据展示
+- ✔️ 历史数据回放
+- ✔️ 日志记录与分析
+- ✔️ 异常告警系统
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🏗️ 系统架构
+
+<div align="center">
+
+```mermaid
+graph TB
+    subgraph Frontend["云控平台前端"]
+        LV[LoginView]
+        MV[MonitorView]
+        CV[ControlView]
+        HV[HistoryView]
+    end
+    
+    subgraph Core["核心通讯层"]
+        VC[vehicleConnection]
+    end
+    
+    subgraph Protocol["通信协议"]
+        WS[WebSocket]
+        WR[WebRTC]
+        RA[REST API]
+    end
+    
+    subgraph Backend["后端服务"]
+        Server[5G Remote Driving Server]
+    end
+    
+    Frontend --> Core
+    Core --> Protocol
+    Protocol --> Backend
+```
+
+</div>
+
+---
+
+## 📁 项目结构
+
+```
+📦 cloudside/
+├── 📄 index.html              # 入口 HTML（百度地图 SDK）
+├── 📄 index.tsx               # React 入口
+├── 📄 App.tsx                 # 主应用逻辑
+├── 📄 types.ts                # TypeScript 类型定义
+├── 📄 metadata.json           # 权限配置
 │
-├── services/                    # [核心] 后端通讯层
-│   └── vehicleConnection.ts     # ★★★ 最重要的文件。负责 WebSocket 遥测数据接收 + WebRTC 视频流连接逻辑。
+├── 📂 services/               # 🔧 后端通讯层
+│   └── 🔌 vehicleConnection.ts
+│       ├── WebSocket 遥测数据接收
+│       ├── WebRTC 视频流连接
+│       └── 实时数据同步
 │
-├── views/                       # 页面视图层
-│   ├── LoginView.tsx            # 登录界面
-│   ├── MonitorView.tsx          # 实时监控界面 (显示视频、地图、大屏数据)
-│   ├── ControlView.tsx          # 远程控制界面 (接管时的驾驶舱视图，带仪表盘)
-│   └── HistoryView.tsx          # 历史回放界面 (接管日志记录)
+├── 📂 views/                  # 🖼️ 页面视图
+│   ├── 🔐 LoginView.tsx       # 登录界面
+│   ├── 📺 MonitorView.tsx     # 实时监控
+│   ├── 🎮 ControlView.tsx     # 远程驾驶舱
+│   └── 📜 HistoryView.tsx     # 历史回放
 │
-└── components/                  # 通用组件层
-    ├── VideoFeed.tsx            # 视频播放器 (支持模拟视频源和真实 WebRTC 流的切换)
-    └── MapContainer.tsx         # 地图组件 (封装了百度地图 GL，支持 3D 视角和车辆跟随)
+└── 📂 components/             # 🧩 通用组件
+    ├── 📹 VideoFeed.tsx       # 视频播放器
+    └── 🗺️ MapContainer.tsx    # 地图组件
 ```
 
 ---
 
-## 2. 真实环境接入指南 (Integration Guide)
+## 🚀 快速开始
 
-**这是让代码从“演示版”变成“实战版”的关键步骤。** 您需要修改代码中的几个“填空区”。
+### 📋 前置条件
 
-### 第一步：接入真实视频流 (Video Streaming)
+| 依赖 | 版本 | 说明 |
+|:----:|:----:|:-----|
+| ![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white) | >= v16 | JavaScript 运行时 |
+| ![npm](https://img.shields.io/badge/npm-CB3837?style=flat-square&logo=npm&logoColor=white) | 最新版 | 包管理器 |
+| ![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white) | 最新版 | 版本控制 |
 
-前端不负责“上传”视频，前端只负责“拉取”视频。
-*   **车端 (上传)**: 需在车上运行 FFmpeg 命令（见第 4 节），推流到服务器。
-*   **云端 (转发)**: 需运行 SRS 服务器（见第 3 节）。
-*   **前端 (拉取)**: 修改 `services/vehicleConnection.ts`。
+### 🔧 环境配置
 
-**需修改文件**: `services/vehicleConnection.ts`
+<details>
+<summary><b>📥 安装 Node.js</b></summary>
 
-```typescript
-// 找到 startWebRTCStream() 方法内的 [填空区 B]
-// 将 localhost 修改为您云服务器的公网 IP
-const SRS_SERVER_IP = "127.0.0.1"; // -> 改为例如 "101.35.x.x"
-```
+#### Windows
 
-### 第二步：接入真实车辆数据 (Telemetry Data)
+1. 访问 [Node.js 官网](https://nodejs.org/)
+2. 下载 **LTS（长期支持版）** 安装包
+3. 双击安装包，一路点击 `Next` 完成安装
+4. 打开终端验证安装：
+   ```bash
+   node -v    # 显示版本号则安装成功
+   npm -v     # npm 会随 Node.js 一起安装
+   ```
 
-包括车速、转速、方向盘转角、GPS 坐标等。
-
-**需修改文件**: `services/vehicleConnection.ts`
-
-```typescript
-// 找到 connect() 方法内的 [填空区 A]
-// 1. 注释掉当前的模拟定时器 (setInterval ...)
-// 2. 解开 WebSocket 代码的注释，并填入您的后端地址
-
-// const socket = new WebSocket('wss://your-real-backend.com/api/telemetry');
-// socket.onmessage = (e) => { ... }
-```
-
-### 第三步：接入真实控制指令 (Control Commands)
-
-当您点击“主动接管”或转动方向盘时，前端需要发指令给车。
-
-**需修改文件**: `services/vehicleConnection.ts`
-
-```typescript
-// 找到 sendControlCommand() 方法内的 [填空区 C]
-// 解开注释，将指令发送给 WebSocket
-// socket.send(JSON.stringify({ cmd: command, val: value }));
-```
-
-### 第四步：百度地图 API Key
-
-目前使用的是演示用的 AK，如果用于生产环境，可能会被限制。
-
-**需修改文件**: `index.html`
-
-```html
-<!-- 替换您的百度地图 AK (Access Key) -->
-<script src="//api.map.baidu.com/api?type=webgl&...&ak=您的密钥"></script>
-```
-
----
-
-## 3. 环境搭建与运行 (Setup & Run)
-
-### 前置条件
-1.  **Node.js**: 用于运行前端代码 (v16+)。
-2.  **Docker**: 用于一键启动流媒体服务器。
-
-### 启动流媒体服务器 (Cloud Side)
-在本地或云服务器上安装 Docker，并运行以下命令启动 SRS 服务器：
+#### macOS
 
 ```bash
-docker run --rm -p 1935:1935 -p 1985:1985 -p 8080:8080 ossrs/srs:4
-```
-*   `1935`: 车端推流端口 (RTMP)
-*   `1985`: 前端播放端口 (WebRTC API)
+# 方式一：使用 Homebrew（推荐）
+brew install node
 
-### 启动前端项目 (Client Side)
+# 方式二：官网下载安装包
+# 访问 https://nodejs.org/ 下载 macOS 安装包
+```
+
+#### Linux (Ubuntu/Debian)
 
 ```bash
-# 1. 安装依赖包
+# 使用 apt 安装
+sudo apt update
+sudo apt install nodejs npm
+
+# 或使用 nvm 安装（推荐，可管理多版本）
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+source ~/.bashrc
+nvm install --lts
+```
+
+</details>
+
+<details>
+<summary><b>📥 安装 Git</b></summary>
+
+#### Windows
+
+1. 访问 [Git 官网](https://git-scm.com/download/win)
+2. 下载 Windows 安装包
+3. 运行安装程序，使用默认选项即可
+4. 右键菜单出现 `Git Bash Here` 则安装成功
+5. 验证安装：
+   ```bash
+   git --version
+   ```
+
+#### macOS
+
+```bash
+# 方式一：使用 Homebrew
+brew install git
+
+# 方式二：Xcode 命令行工具
+xcode-select --install
+```
+
+#### Linux (Ubuntu/Debian)
+
+```bash
+sudo apt update
+sudo apt install git
+
+# 验证安装
+git --version
+```
+
+</details>
+
+<details>
+<summary><b>⚙️ Git 初始配置（首次使用必做）</b></summary>
+
+```bash
+# 设置用户名
+git config --global user.name "你的用户名"
+
+# 设置邮箱
+git config --global user.email "你的邮箱@example.com"
+
+# 查看配置
+git config --list
+```
+
+</details>
+
+### ⚡ 安装
+
+```bash
+# 📥 克隆项目
+git clone https://github.com/Cecilia-Stark/5G-Remote-Driving-Cloud-Platform.git
+
+# 📂 进入目录
+cd 5G-Remote-Driving-Cloud-Platform
+
+# 📦 安装依赖
 npm install
 
-# 2. 启动网页
+# 🚀 启动开发服务器
 npm run dev
 ```
 
+### 📜 可用脚本
+
+| 命令 | 描述 |
+|:-----|:-----|
+| `npm run dev` | 🚀 启动开发服务器 |
+| `npm run build` | 📦 构建生产版本 |
+| `npm run preview` | 👀 预览生产构建 |
+| `npm run lint` | 🔍 代码检查 |
+
 ---
 
-## 4. 车端视频推流 (Car Side)
+## 🛠️ 技术栈
 
-您需要在车端工控机（如 NVIDIA Jetson 或树莓派）上运行以下命令，将摄像头画面传给云端。
+<div align="center">
 
-**安装 FFmpeg**:
-*   Ubuntu/Debian: `sudo apt install ffmpeg`
-*   Windows: 下载 exe 并配置环境变量。
+| 类别 | 技术 |
+|:----:|:----:|
+| 前端框架 | ![React](https://img.shields.io/badge/React_19-20232A?style=flat-square&logo=react&logoColor=61DAFB) |
+| 构建工具 | ![Vite](https://img.shields.io/badge/Vite_7-646CFF?style=flat-square&logo=vite&logoColor=white) |
+| 类型系统 | ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white) |
+| 视频传输 | ![WebRTC](https://img.shields.io/badge/WebRTC-333333?style=flat-square&logo=webrtc&logoColor=white) |
+| 数据通信 | ![WebSocket](https://img.shields.io/badge/WebSocket-010101?style=flat-square&logo=socket.io&logoColor=white) |
+| 地图服务 | ![Baidu Map](https://img.shields.io/badge/Baidu_Map_GL-2932E1?style=flat-square&logo=baidu&logoColor=white) |
+| 图标库 | ![Lucide](https://img.shields.io/badge/Lucide_React-F56565?style=flat-square&logo=lucide&logoColor=white) |
 
-**推流命令 (USB 摄像头)**:
-将 `<云端IP>` 替换为您运行 Docker SRS 的电脑 IP。
+</div>
 
-```bash
-# Linux / Jetson
-ffmpeg -f v4l2 -i /dev/video0 \
-  -c:v libx264 -preset ultrafast -tune zerolatency \
-  -f flv rtmp://<云端IP>/live/car_front
+---
 
-# Windows
-ffmpeg -f dshow -i video="您的摄像头名称" \
-  -c:v libx264 -preset ultrafast -tune zerolatency \
-  -f flv rtmp://<云端IP>/live/car_front
+## 🤝 贡献指南
+
+我们欢迎所有形式的贡献！
+
+<div align="center">
+
+```mermaid
+graph LR
+    A[Fork 项目] --> B[创建分支]
+    B --> C[编写代码]
+    C --> D[提交更改]
+    D --> E[发起 PR]
+    E --> F[代码审查]
+    F --> G[合并代码]
 ```
 
+</div>
+
+### 贡献步骤
+
+| 步骤 | 命令 |
+|:----:|:-----|
+| 1️⃣ | 🍴 Fork 本项目 |
+| 2️⃣ | `git checkout -b feature/AmazingFeature` |
+| 3️⃣ | `git commit -m 'Add some AmazingFeature'` |
+| 4️⃣ | `git push origin feature/AmazingFeature` |
+| 5️⃣ | 🎉 发起 Pull Request |
+
 ---
 
-## 5. 常见问题 (FAQ)
+## 📄 许可证
 
-**Q1: 为什么监控画面一直是黑的？**
-*   检查 Docker SRS 是否正在运行。
-*   检查车端 FFmpeg 推流命令是否报错。
-*   检查 `services/vehicleConnection.ts` 里的 IP 地址是否正确。
-*   如果是远程部署，检查云服务器防火墙是否开放 `1935` 和 `1985` 端口 (UDP+TCP)。
+<div align="center">
 
-**Q2: 如何让地图显示真实位置？**
-*   您需要有一个后端服务，接收车辆 GPS 模块的数据，然后通过 WebSocket 转发给前端。
-*   前端在 `vehicleConnection.ts` 收到数据后，更新 `latitude` 和 `longitude` 字段即可。
+本项目采用 [MIT](LICENSE) 许可证
+
+</div>
+
+---
+
+## 📞 联系方式
+
+<div align="center">
+
+[![GitHub](https://img.shields.io/badge/GitHub-Cecilia--Stark-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Cecilia-Stark)
+
+</div>
+
+---
+
+<div align="center">
+
+### ⭐ 如果这个项目对你有帮助，请给一个 Star 支持一下！
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%"/>
+
+**Made with ❤️ by Cecilia Stark**
+
+</div>
