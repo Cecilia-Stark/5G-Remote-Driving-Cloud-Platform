@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { VehicleTelemetry, Gear } from '../types';
-import { VideoFeed } from '../components/VideoFeed';
 import { CarVideoFeed } from '../components/CarVideoFeed';
 import { MapContainer } from '../components/MapContainer';
 import { Save, LogOut, Settings, Wifi } from 'lucide-react';

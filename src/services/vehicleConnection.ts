@@ -1,17 +1,15 @@
 import { Gear, VehicleStatus, VehicleTelemetry } from '../types';
 
 /**
- * 服务层: 车辆通讯连接管理 (Vehicle Connection Service)
+ * 服务层：车辆通讯连接管理 (Vehicle Connection Service)
  * 
  * =========================================================================
  * 核心功能：
  * 1. 遥测数据 (Telemetry): 处理 WebSocket 数据 (速度、转角、位置)。
- * 2. 视频流 (WebRTC): 管理与流媒体服务器的 P2P 连接。
  * =========================================================================
  */
 
 type TelemetryCallback = (data: VehicleTelemetry) => void;
-type StreamCallback = (stream: MediaStream) => void;
 
 class VehicleConnectionService {
   private subscribers: TelemetryCallback[] = [];
@@ -20,10 +18,6 @@ class VehicleConnectionService {
   private intervalId: any = null;
   private currentData: VehicleTelemetry = this.getInitialData();
   private isSimulatingAnomaly: boolean = false;
-
-  // --- WebRTC 视频流相关变量 ---
-  private pc: RTCPeerConnection | null = null;
-  private streamCallback: StreamCallback | null = null;
 
   private getInitialData(): VehicleTelemetry {
     return {
@@ -64,19 +58,10 @@ class VehicleConnectionService {
       this.simulateNewDataFrame(); 
       this.notifySubscribers(this.currentData);
     }, 200); 
-
-    // 初始化视频连接
-    this.startWebRTCStream();
   }
 
   public disconnect() {
     if (this.intervalId) clearInterval(this.intervalId);
-    
-    // 关闭视频流
-    if (this.pc) {
-        this.pc.close();
-        this.pc = null;
-    }
     console.log("连接已关闭");
   }
 
@@ -87,17 +72,12 @@ class VehicleConnectionService {
     };
   }
 
-  // 注册视频流回调，让组件能拿到 MediaStream
-  public onVideoStream(callback: StreamCallback) {
-      this.streamCallback = callback;
-  }
-
   private notifySubscribers(data: VehicleTelemetry) {
     this.subscribers.forEach(cb => cb(data));
   }
 
   // ============================================================
-  //  2. 视频流连接 (WebRTC) - 核心部分
+  //  2. 控制指令 & 模拟逻辑
   // ============================================================
   /**
    * 真实场景下，前端需要从流媒体服务器(如 SRS, Janus) 拉取 WebRTC 流
@@ -182,15 +162,7 @@ class VehicleConnectionService {
   // ============================================================
   public sendControlCommand(command: string, value: any) {
     console.log(`[指令下发 Cloud->Car] ${command}:`, value);
-    // [填空区 C]: 通过 WebSocket 发送控制指令
-    // 在这里实现您提到的 "通过后端操作把舱端和车端联结在一起"
-    // 
-    // 流程说明:
-    // 1. 发送 JSON: socket.send(JSON.stringify({ cmd: command, val: value }));
-    // 2. 云端收到 TAKEOVER_REQUEST，验证权限。
-    // 3. 云端向车端发送指令，要求切换到远程控制模式。
-    // 4. 车端响应 Ready 后，云端建立 WebRTC DataChannel 或 UDP 隧道。
-    // 5. 前端跳转到 ControlView，开始发送方向盘/油门数据。
+    // 通过 HTTP 发送控制指令到小车（见 carControl.ts）
   }
 
   public triggerManualTakeover() {

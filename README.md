@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/React-19.2.0-61DAFB?style=flat-square&logo=react&logoColor=white" alt="React"/>
   <img src="https://img.shields.io/badge/Vite-7.2.4-646CFF?style=flat-square&logo=vite&logoColor=white" alt="Vite"/>
   <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript"/>
-  <img src="https://img.shields.io/badge/WebRTC-333333?style=flat-square&logo=webrtc&logoColor=white" alt="WebRTC"/>
+  <img src="https://img.shields.io/badge/HTTP-Video_Stream-FF6B6B?style=flat-square&logo=http&logoColor=white" alt="HTTP Video"/>
   <img src="https://img.shields.io/badge/WebSocket-010101?style=flat-square&logo=socket.io&logoColor=white" alt="WebSocket"/>
   <img src="https://img.shields.io/badge/Baidu_Map-2932E1?style=flat-square&logo=baidu&logoColor=white" alt="Baidu Map"/>
   <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License"/>
@@ -33,9 +33,9 @@
 
 ## 🏆 项目简介
 
-基于 **5G 低延迟网络** 的远程驾驶云控平台，实现车辆的实时监控与远程控制。通过 **WebRTC 超低延迟视频传输** 技术，结合百度地图 3D 可视化，打造沉浸式远程驾驶体验。
+基于 **5G 低延迟网络** 的远程驾驶云控平台，实现车辆的实时监控与远程控制。采用 **MJPEG 流式视频传输** 技术，结合百度地图 3D 可视化，打造简洁可靠的远程驾驶方案。
 
-> **💡 延迟优化**: 采用 WebRTC 方案，视频延迟可降至 **200-500ms** (传统 HTTP 方案约 2-5 秒)
+> **💡 方案特点**: MJPEG 流式传输，延迟 **300-800ms**，部署简单，无需额外流媒体服务器
 
 ---
 
@@ -46,8 +46,10 @@
 <td width="50%" valign="top">
 
 ### 🎥 实时视频流
-- ✔️ WebRTC 低延迟视频传输
-- ✔️ 支持模拟视频源切换
+- ✔️ MJPEG 流式视频传输
+- ✔️ 视频代理跨域支持
+- ✔️ 自动重连机制
+- ✔️ 多路视频同步播放
 - ✔️ 多路视频同步播放
 - ✔️ 自适应码率调节
 
@@ -290,7 +292,7 @@ npm run dev
 | 前端框架 | ![React](https://img.shields.io/badge/React_19-20232A?style=flat-square&logo=react&logoColor=61DAFB) |
 | 构建工具 | ![Vite](https://img.shields.io/badge/Vite_7-646CFF?style=flat-square&logo=vite&logoColor=white) |
 | 类型系统 | ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white) |
-| 视频传输 | ![WebRTC](https://img.shields.io/badge/WebRTC-333333?style=flat-square&logo=webrtc&logoColor=white) |
+| 视频传输 | ![HTTP](https://img.shields.io/badge/MJPEG_Stream-FF6B6B?style=flat-square&logo=http&logoColor=white) |
 | 数据通信 | ![WebSocket](https://img.shields.io/badge/WebSocket-010101?style=flat-square&logo=socket.io&logoColor=white) |
 | 地图服务 | ![Baidu Map](https://img.shields.io/badge/Baidu_Map_GL-2932E1?style=flat-square&logo=baidu&logoColor=white) |
 | 图标库 | ![Lucide](https://img.shields.io/badge/Lucide_React-F56565?style=flat-square&logo=lucide&logoColor=white) |
