@@ -1,0 +1,253 @@
+<mxGraphModel dx="1434" dy="499" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" background="#ffffff" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    
+    <!-- Background: Car Side Zone -->
+    <mxCell id="car-zone" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#1976d2;gradientColor=#bbdefb;" parent="1" vertex="1">
+      <mxGeometry x="20" y="20" width="480" height="860" as="geometry" />
+    </mxCell>
+    
+    <!-- Background: Network Zone -->
+    <mxCell id="network-zone" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#f57c00;gradientColor=#ffe0b2;" parent="1" vertex="1">
+      <mxGeometry x="520" y="20" width="280" height="860" as="geometry" />
+    </mxCell>
+    
+    <!-- Background: PC Side Zone -->
+    <mxCell id="pc-zone" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#388e3c;gradientColor=#c8e6c9;" parent="1" vertex="1">
+      <mxGeometry x="820" y="20" width="760" height="860" as="geometry" />
+    </mxCell>
+
+    <!-- ==================== CAR SIDE ==================== -->
+    
+    <!-- Title: Car Side -->
+    <mxCell id="car-title" value="&lt;b style=&quot;font-size: 18px;&quot;&gt;🚗 小车端 (Car Side)&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontColor=#1976d2;fontStyle=1" parent="1" vertex="1">
+      <mxGeometry x="20" y="30" width="480" height="30" as="geometry" />
+    </mxCell>
+
+    <!-- USB Camera -->
+    <mxCell id="usb-camera" value="&lt;b&gt;📷 USB 摄像头&lt;/b&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;硬件设备&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#bbdefb;strokeColor=#1976d2;gradientColor=#64b5f6;" parent="1" vertex="1">
+      <mxGeometry x="70" y="80" width="300" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- Arrow to usb_cam -->
+    <mxCell id="arrow1" value="" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#1976d2;" parent="1" edge="1">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <mxPoint x="220" y="140" as="sourcePoint" />
+        <mxPoint x="220" y="160" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+
+    <!-- usb_cam Driver -->
+    <mxCell id="usb-cam-driver" value="&lt;b&gt;ROS2 usb_cam 驱动&lt;/b&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;节点：/usb_cam&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#90caf9;strokeColor=#1565c0;gradientColor=#42a5f5;" parent="1" vertex="1">
+      <mxGeometry x="70" y="170" width="300" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- /image_raw Topic -->
+    <mxCell id="image-raw-topic" value="&lt;b&gt;📬 /image_raw 话题&lt;/b&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;ROS2 Topic (sensor_msgs/Image)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3f2fd;strokeColor=#42a5f5;dashed=1;dashPattern=1 4;" parent="1" vertex="1">
+      <mxGeometry x="70" y="260" width="300" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- Arrow to web_video_server -->
+    <mxCell id="arrow2" value="" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#1976d2;" parent="1" edge="1">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <mxPoint x="220" y="310" as="sourcePoint" />
+        <mxPoint x="220" y="330" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+
+    <!-- web_video_server -->
+    <mxCell id="web-video-server" value="&lt;b&gt;🌐 web_video_server&lt;/b&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;端口：8080&lt;/font&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;MJPEG 流服务&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#64b5f6;strokeColor=#1565c0;gradientColor=#2196f3;" parent="1" vertex="1">
+      <mxGeometry x="70" y="350" width="300" height="70" as="geometry" />
+    </mxCell>
+
+    <!-- Arrow to robot_web_control -->
+    <mxCell id="arrow3" value="" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#1976d2;" parent="1" edge="1">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <mxPoint x="220" y="420" as="sourcePoint" />
+        <mxPoint x="220" y="440" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+
+    <!-- robot_web_control.py -->
+    <mxCell id="robot-web-control" value="&lt;b&gt;🤖 robot_web_control.py&lt;/b&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;端口：8000&lt;/font&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;转发 /mjpeg 端点&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#42a5f5;strokeColor=#0d47a1;gradientColor=#1e88e5;" parent="1" vertex="1">
+      <mxGeometry x="70" y="460" width="300" height="70" as="geometry" />
+    </mxCell>
+
+    <!-- Tech Stack: Car Side -->
+    <mxCell id="car-tech-stack" value="&lt;b&gt;🛠️ 技术栈&lt;/b&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;• ROS2 Humble&lt;/font&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;• Python 3.10&lt;/font&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;• usb_cam 包&lt;/font&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;• web_video_server&lt;/font&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;• HTTP/MJPEG&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1976d2;dashed=1;" parent="1" vertex="1">
+      <mxGeometry x="70" y="570" width="300" height="120" as="geometry" />
+    </mxCell>
+
+    <!-- Network Output -->
+    <mxCell id="car-output" value="&lt;b&gt;📤 输出&lt;/b&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;http://&amp;lt;小车 IP&amp;gt;:8000/mjpeg&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1976d2;strokeColor=#0d47a1;fontColor=#ffffff;" parent="1" vertex="1">
+      <mxGeometry x="70" y="720" width="300" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- ==================== NETWORK TRANSMISSION ==================== -->
+    
+    <!-- Title: Network -->
+    <mxCell id="network-title" value="&lt;b style=&quot;font-size: 18px;&quot;&gt;🌐 网络传输&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontColor=#f57c00;fontStyle=1" parent="1" vertex="1">
+      <mxGeometry x="520" y="30" width="280" height="30" as="geometry" />
+    </mxCell>
+
+    <!-- WiFi Icon -->
+    <mxCell id="wifi-icon" value="&lt;span style=&quot;font-size: 40px;&quot;&gt;📶&lt;/span&gt;&lt;br&gt;&lt;b&gt;WiFi / 局域网&lt;/b&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;TCP/IP 协议&lt;/font&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;HTTP 流式传输&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe0b2;strokeColor=#f57c00;" parent="1" vertex="1">
+      <mxGeometry x="550" y="80" width="220" height="100" as="geometry" />
+    </mxCell>
+
+    <!-- Network Arrow from Car -->
+    <mxCell id="network-arrow-in" value="" style="endArrow=classic;html=1;strokeWidth=3;strokeColor=#f57c00;dashed=1;dashPattern=1 4;" parent="1" edge="1">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <mxPoint x="500" y="750" as="sourcePoint" />
+        <mxPoint x="550" y="750" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+
+    <!-- Network Data Flow -->
+    <mxCell id="network-data" value="&lt;b&gt;📡 数据流&lt;/b&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;MJPEG over HTTP&lt;/font&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;Chunked Transfer&lt;/font&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;Keep-Alive 连接&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcc80;strokeColor=#ef6c00;" parent="1" vertex="1">
+      <mxGeometry x="550" y="220" width="220" height="90" as="geometry" />
+    </mxCell>
+
+    <!-- Network Info -->
+    <mxCell id="network-info" value="&lt;b&gt;🔗 连接信息&lt;/b&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;源：&amp;lt;小车 IP&amp;gt;:8000/mjpeg&lt;/font&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;目标：&amp;lt;电脑 IP&amp;gt;:8001&lt;/font&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;协议：HTTP/1.1&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#f57c00;dashed=1;" parent="1" vertex="1">
+      <mxGeometry x="550" y="340" width="220" height="100" as="geometry" />
+    </mxCell>
+
+    <!-- Network Arrow to PC -->
+    <mxCell id="network-arrow-out" value="" style="endArrow=classic;html=1;strokeWidth=3;strokeColor=#f57c00;dashed=1;dashPattern=1 4;" parent="1" edge="1">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <mxPoint x="770" y="750" as="sourcePoint" />
+        <mxPoint x="820" y="750" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+
+    <!-- ==================== PC SIDE ==================== -->
+    
+    <!-- Title: PC Side -->
+    <mxCell id="pc-title" value="&lt;b style=&quot;font-size: 18px;&quot;&gt;💻 电脑端 (PC Side)&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontColor=#388e3c;fontStyle=1" parent="1" vertex="1">
+      <mxGeometry x="820" y="30" width="760" height="30" as="geometry" />
+    </mxCell>
+
+    <!-- Video Proxy -->
+    <mxCell id="video-proxy" value="&lt;b&gt;🔄 video-proxy-lowlatency.cjs&lt;/b&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;端口：8001&lt;/font&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;低延迟代理转发&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#a5d6a7;strokeColor=#388e3c;gradientColor=#66bb6a;" parent="1" vertex="1">
+      <mxGeometry x="870" y="80" width="320" height="70" as="geometry" />
+    </mxCell>
+
+    <!-- Proxy Optimizations -->
+    <mxCell id="proxy-optimizations" value="&lt;b&gt;⚡ 优化项&lt;/b&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;✓ 禁用 HTTP 缓冲&lt;/font&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;✓ 立即转发 Chunk&lt;/font&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;✓ Keep-Alive 长连接&lt;/font&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;✓ 禁用缓存&lt;/font&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;✓ agent: false&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c8e6c9;strokeColor=#2e7d32;dashed=1;" parent="1" vertex="1">
+      <mxGeometry x="870" y="180" width="320" height="130" as="geometry" />
+    </mxCell>
+
+    <!-- Arrow to Web Frontend -->
+    <mxCell id="arrow-pc-web" value="" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#388e3c;" parent="1" edge="1">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <mxPoint x="1220" y="115" as="sourcePoint" />
+        <mxPoint x="1270" y="115" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+
+    <!-- Web Frontend Box -->
+    <mxCell id="web-frontend-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f8e9;strokeColor=#689f38;" parent="1" vertex="1">
+      <mxGeometry x="1270" y="80" width="290" height="460" as="geometry" />
+    </mxCell>
+
+    <!-- Web Frontend Title -->
+    <mxCell id="web-frontend-title" value="&lt;b&gt;🌍 Web 前端&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontColor=#2e7d32;fontStyle=1" parent="1" vertex="1">
+      <mxGeometry x="1280" y="85" width="270" height="30" as="geometry" />
+    </mxCell>
+
+    <!-- CarVideoFeed Component -->
+    <mxCell id="car-video-feed" value="&lt;b&gt;📺 CarVideoFeed.tsx&lt;/b&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;React 19 组件&lt;/font&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;&amp;lt;img&amp;gt; 标签显示 MJPEG&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dcedc8;strokeColor=#689f38;" parent="1" vertex="1">
+      <mxGeometry x="1300" y="130" width="240" height="70" as="geometry" />
+    </mxCell>
+
+    <!-- Arrow to Video Display -->
+    <mxCell id="arrow-feed-display" value="" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#388e3c;" parent="1" edge="1">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <mxPoint x="1420" y="200" as="sourcePoint" />
+        <mxPoint x="1420" y="220" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+
+    <!-- Video Display -->
+    <mxCell id="video-display" value="&lt;b&gt;🖼️ 视频显示区域&lt;/b&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;MJPEG 实时渲染&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#c5e1a5;strokeColor=#558b2f;" parent="1" vertex="1">
+      <mxGeometry x="1300" y="230" width="240" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- Auto Reconnect -->
+    <mxCell id="auto-reconnect" value="&lt;b&gt;🔄 自动重连机制&lt;/b&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;• 3 秒后自动重试&lt;/font&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;• 状态指示器&lt;/font&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;• 错误恢复 UI&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcedc8;strokeColor=#689f38;dashed=1;" parent="1" vertex="1">
+      <mxGeometry x="1300" y="320" width="240" height="90" as="geometry" />
+    </mxCell>
+
+    <!-- Default URL -->
+    <mxCell id="default-url" value="&lt;b&gt;🔗 默认地址&lt;/b&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;http://localhost:8001/&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#81c784;strokeColor=#2e7d32;fontColor=#ffffff;" parent="1" vertex="1">
+      <mxGeometry x="1300" y="440" width="240" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- Tech Stack: PC Side -->
+    <mxCell id="pc-tech-stack" value="&lt;b&gt;🛠️ 技术栈&lt;/b&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;• Node.js 18+&lt;/font&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;• HTTP Proxy&lt;/font&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;• React 19&lt;/font&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;• TypeScript 5&lt;/font&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;• Vite 5&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#388e3c;dashed=1;" parent="1" vertex="1">
+      <mxGeometry x="870" y="570" width="320" height="120" as="geometry" />
+    </mxCell>
+
+    <!-- Tech Stack: Web Frontend -->
+    <mxCell id="web-tech-stack" value="&lt;b&gt;🛠️ 前端技术栈&lt;/b&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;• React 19&lt;/font&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;• TypeScript 5&lt;/font&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;• Vite 5&lt;/font&gt;&lt;br&gt;&lt;font size=&quot;2&quot;&gt;• TailwindCSS&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#689f38;dashed=1;" parent="1" vertex="1">
+      <mxGeometry x="1220" y="570" width="340" height="120" as="geometry" />
+    </mxCell>
+
+    <!-- Full Data Flow Arrow (Bottom) -->
+    <mxCell id="full-data-flow" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;📊 完整数据流向&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#424242;fontStyle=1" parent="1" vertex="1">
+      <mxGeometry x="20" y="820" width="1560" height="30" as="geometry" />
+    </mxCell>
+
+    <!-- Flow Labels at Bottom -->
+    <mxCell id="flow-label-1" value="&lt;font size=&quot;2&quot;&gt;1. 摄像头采集&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=bottom;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#1976d2;" parent="1" vertex="1">
+      <mxGeometry x="150" y="800" width="100" height="20" as="geometry" />
+    </mxCell>
+
+    <mxCell id="flow-label-2" value="&lt;font size=&quot;2&quot;&gt;2. ROS2 处理&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=bottom;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#1976d2;" parent="1" vertex="1">
+      <mxGeometry x="290" y="800" width="100" height="20" as="geometry" />
+    </mxCell>
+
+    <mxCell id="flow-label-3" value="&lt;font size=&quot;2&quot;&gt;3. 小车服务&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=bottom;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#1976d2;" parent="1" vertex="1">
+      <mxGeometry x="430" y="800" width="100" height="20" as="geometry" />
+    </mxCell>
+
+    <mxCell id="flow-label-4" value="&lt;font size=&quot;2&quot;&gt;4. WiFi 传输&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=bottom;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#f57c00;" parent="1" vertex="1">
+      <mxGeometry x="650" y="800" width="100" height="20" as="geometry" />
+    </mxCell>
+
+    <mxCell id="flow-label-5" value="&lt;font size=&quot;2&quot;&gt;5. 代理转发&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=bottom;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#388e3c;" parent="1" vertex="1">
+      <mxGeometry x="960" y="800" width="100" height="20" as="geometry" />
+    </mxCell>
+
+    <mxCell id="flow-label-6" value="&lt;font size=&quot;2&quot;&gt;6. Web 显示&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=bottom;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#388e3c;" parent="1" vertex="1">
+      <mxGeometry x="1400" y="800" width="100" height="20" as="geometry" />
+    </mxCell>
+
+    <!-- Legend -->
+    <mxCell id="legend-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#9e9e9e;dashed=1;" parent="1" vertex="1">
+      <mxGeometry x="20" y="860" width="300" height="120" as="geometry" />
+    </mxCell>
+
+    <mxCell id="legend-title" value="&lt;b&gt;📖 图例说明&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#424242;fontStyle=1" parent="1" vertex="1">
+      <mxGeometry x="30" y="865" width="280" height="25" as="geometry" />
+    </mxCell>
+
+    <mxCell id="legend-1" value="&lt;font size=&quot;2&quot;&gt;🔵 蓝色区域：小车端 (ROS2)&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#1976d2;" parent="1" vertex="1">
+      <mxGeometry x="40" y="895" width="260" height="20" as="geometry" />
+    </mxCell>
+
+    <mxCell id="legend-2" value="&lt;font size=&quot;2&quot;&gt;🟠 橙色区域：网络传输层&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#f57c00;" parent="1" vertex="1">
+      <mxGeometry x="40" y="920" width="260" height="20" as="geometry" />
+    </mxCell>
+
+    <mxCell id="legend-3" value="&lt;font size=&quot;2&quot;&gt;🟢 绿色区域：电脑端 (Node.js + Web)&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#388e3c;" parent="1" vertex="1">
+      <mxGeometry x="40" y="945" width="260" height="20" as="geometry" />
+    </mxCell>
+
+    <mxCell id="legend-4" value="&lt;font size=&quot;2&quot;&gt;➤ 实线箭头：数据流向&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#424242;" parent="1" vertex="1">
+      <mxGeometry x="40" y="970" width="260" height="20" as="geometry" />
+    </mxCell>
+  </root>
+</mxGraphModel>

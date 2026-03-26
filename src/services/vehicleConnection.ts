@@ -106,16 +106,15 @@ class VehicleConnectionService {
   private async startWebRTCStream() {
       console.log("正在尝试建立 WebRTC 视频连接...");
 
-      // [填空区 B]: 配置您的流媒体服务器地址
-      // 如果您在本地运行 Docker SRS，请使用 'localhost' 或 '127.0.0.1'
-      // 如果部署在云端，请换成云服务器公网 IP
+      const SRS_SERVER_IP = localStorage.getItem('srs_server_ip') || '127.0.0.1';
+      const USE_WEBRTC = localStorage.getItem('use_webrtc') === 'true';
       
-      // SRS WebRTC 播放 API 接口 (端口 1985 是 SRS 默认 HTTP API 端口)
-      const SRS_SERVER_IP = "127.0.0.1"; 
+      if (!USE_WEBRTC) {
+          console.log("⚠️ 未启用 WebRTC，使用 HTTP MJPEG 模式");
+          return;
+      }
+
       const WEBRTC_API_URL = `http://${SRS_SERVER_IP}:1985/rtc/v1/play/`;
-      
-      // SRS 标准流地址格式: webrtc://IP/live/流名称
-      // 对应推流命令: ffmpeg ... -f flv rtmp://IP/live/car_front
       const STREAM_URL = `webrtc://${SRS_SERVER_IP}/live/car_front`;
 
       try {

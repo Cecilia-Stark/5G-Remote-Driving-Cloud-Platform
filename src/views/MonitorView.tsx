@@ -1,28 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { VehicleTelemetry, VehicleStatus } from '../types';
 import { vehicleService } from '../services/vehicleConnection';
-import { VideoFeed } from '../components/VideoFeed';
+import { CarVideoFeed } from '../components/CarVideoFeed';
 import { MapContainer } from '../components/MapContainer';
 import { AlertTriangle, Activity, Wifi, Disc, Target, Gamepad2, Zap } from 'lucide-react';
-
 interface MonitorViewProps {
   telemetry: VehicleTelemetry;
   onTakeover: () => void;
 }
-
 export const MonitorView: React.FC<MonitorViewProps> = ({ telemetry, onTakeover }) => {
   
   const isCritical = telemetry.status === VehicleStatus.CRITICAL;
-  const [realtimeStream, setRealtimeStream] = useState<MediaStream | undefined>(undefined);
-
-  // 监听服务层传来的真实视频流
-  useEffect(() => {
-      vehicleService.onVideoStream((stream) => {
-          console.log("监控界面接收到视频流");
-          setRealtimeStream(stream);
-      });
-  }, []);
-
   // 状态中文映射
   const getStatusText = (status: VehicleStatus) => {
       switch(status) {
@@ -33,7 +21,6 @@ export const MonitorView: React.FC<MonitorViewProps> = ({ telemetry, onTakeover 
           default: return status;
       }
   };
-
   return (
     <div className="flex flex-col h-full bg-[#050510] text-white p-4 gap-4">
       {/* 状态栏 */}
@@ -67,16 +54,15 @@ export const MonitorView: React.FC<MonitorViewProps> = ({ telemetry, onTakeover 
             </div>
         </div>
       </div>
-
       {/* 主网格布局 */}
       <div className="flex-1 grid grid-cols-12 gap-4 min-h-0">
         
         {/* 左侧：环视/车况 (3列) */}
         <div className="col-span-3 bg-black/40 border border-white/5 rounded-xl overflow-hidden flex flex-col relative group">
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-transparent z-20"></div>
-          <VideoFeed 
+          <CarVideoFeed 
             label="左前环视" 
-            src="https://cdn.coverr.co/videos/coverr-driving-through-the-city-at-night-4527/1080p.mp4" 
+             
             className="flex-1 opacity-80 grayscale-[30%]"
           />
           {/* 增强型 HUD */}
@@ -91,15 +77,14 @@ export const MonitorView: React.FC<MonitorViewProps> = ({ telemetry, onTakeover 
              </div>
           </div>
         </div>
-
         {/* 中间：主视角 (6列) */}
         <div className="col-span-6 bg-black border border-blue-500/20 rounded-xl overflow-hidden flex flex-col relative shadow-[0_0_20px_rgba(0,0,0,0.5)]">
           
-          <VideoFeed 
+          <CarVideoFeed 
             label="前向主视角" 
             // 如果获取到了真实流，这里会自动使用 stream，忽略 src
-            stream={realtimeStream} 
-            src="https://cdn.coverr.co/videos/coverr-driving-on-a-road-with-snow-4513/1080p.mp4" 
+             
+             
             className="flex-1"
             overlay={
                 // AR HUD 模拟
@@ -112,7 +97,6 @@ export const MonitorView: React.FC<MonitorViewProps> = ({ telemetry, onTakeover 
                     
                     {/* 透视线 */}
                     <div className="absolute top-[55%] left-[10%] right-[10%] bottom-0 border-x border-green-500/10 transform perspective-1000 rotate-x-60"></div>
-
                     {/* 目标框 */}
                     <div className="absolute top-[45%] left-[45%] w-20 h-16 border border-yellow-400/60 rounded-sm">
                         <div className="absolute -top-4 left-0 bg-yellow-400/20 text-yellow-300 text-[10px] px-1 font-mono">目标 ID:44</div>
@@ -139,7 +123,6 @@ export const MonitorView: React.FC<MonitorViewProps> = ({ telemetry, onTakeover 
             </div>
           )}
         </div>
-
         {/* 右侧：地图 (3列) */}
         <div className="col-span-3 bg-[#0a0a16] border border-white/5 rounded-xl overflow-hidden flex flex-col relative">
             <div className="absolute top-3 left-3 z-10 bg-black/80 backdrop-blur px-3 py-1 rounded border border-white/10 flex items-center gap-2">
@@ -149,12 +132,10 @@ export const MonitorView: React.FC<MonitorViewProps> = ({ telemetry, onTakeover 
             <MapContainer lat={telemetry.latitude} lng={telemetry.longitude} className="flex-1" />
         </div>
       </div>
-
       {/* 底部控制栏 - 重新设计：以安全接管为核心 */}
       <div className="h-20 bg-[#0a0a16] rounded-xl flex items-center justify-between px-6 border border-white/5 relative overflow-hidden shadow-2xl">
          {/* 底部装饰发光 */}
          <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-blue-500/30 to-transparent"></div>
-
          {/* 左侧信息 */}
          <div className="flex flex-col z-10 w-1/4">
             <span className="text-[10px] text-gray-500 tracking-widest font-tech uppercase mb-1">AI 智驾状态 (Autopilot Status)</span>
@@ -191,7 +172,6 @@ export const MonitorView: React.FC<MonitorViewProps> = ({ telemetry, onTakeover 
                 )}
              </button>
          </div>
-
          {/* 右侧信息 */}
          <div className="flex flex-col items-end z-10 w-1/4">
              <div className="flex items-center gap-2 mb-1">

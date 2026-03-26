@@ -5,7 +5,7 @@ import { MonitorView } from './views/MonitorView';
 import { ControlView } from './views/ControlView';
 import { HistoryView } from './views/HistoryView';
 import { LoginView } from './views/LoginView';
-import { Car, LogOut, Database, Monitor, Gamepad2, ShieldAlert, Signal } from 'lucide-react';
+import { Car, LogOut, Database, Monitor, Gamepad2 } from 'lucide-react';
 
 const App: React.FC = () => {
   // Application State
@@ -172,25 +172,8 @@ const App: React.FC = () => {
 
           {/* 右侧状态区 */}
           <div className="flex items-center gap-6">
-              <div className="hidden md:flex flex-col items-end text-xs">
-                  <div className="flex items-center gap-2 text-gray-400 font-tech">
-                      <Signal size={12} className={telemetry ? "text-green-500" : "text-red-500"} />
-                      <span>{telemetry ? `${telemetry.latencyMs}ms` : '离线'}</span>
-                  </div>
-                  <div className="text-gray-500">操作员: <span className="text-blue-300">{currentUser}</span></div>
-              </div>
-
-              {/* 模拟控制 */}
-              <button 
-                onClick={() => vehicleService.toggleSimulationAnomaly()}
-                className="text-[10px] bg-yellow-500/10 text-yellow-500 border border-yellow-500/30 px-2 py-1 rounded hover:bg-yellow-500/20 transition-colors uppercase font-bold tracking-wider"
-                title="触发模拟异常"
-              >
-                 模拟异常
-              </button>
-
+              <div className="text-gray-500">操作员：<span className="text-blue-300">{currentUser}</span></div>
               <div className="h-6 w-px bg-white/10"></div>
-
               <button onClick={handleLogout} className="text-gray-400 hover:text-red-400 transition-colors" title="退出登录">
                   <LogOut size={20} />
               </button>

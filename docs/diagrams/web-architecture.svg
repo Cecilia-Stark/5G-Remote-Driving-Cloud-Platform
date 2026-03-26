@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 850" style="background:#fff">
+  <defs>
+    <marker id="arrow2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#666"/>
+    </marker>
+  </defs>
+  
+  <!-- 标题 -->
+  <text x="650" y="35" text-anchor="middle" font-size="22" font-weight="bold" fill="#333">5G 远程驾驶 Web 平台 - 软件架构图</text>
+  
+  <!-- 表示层 -->
+  <rect x="30" y="60" width="900" height="110" rx="8" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2"/>
+  <text x="50" y="85" font-size="15" font-weight="bold" fill="#7b1fa2">📺 表示层 (Views)</text>
+  
+  <rect x="70" y="100" width="120" height="50" rx="5" fill="#e1bee7" stroke="#7b1fa2"/>
+  <text x="130" y="125" text-anchor="middle" font-size="12" fill="#333">🔐 LoginView</text>
+  
+  <rect x="210" y="100" width="120" height="50" rx="5" fill="#e1bee7" stroke="#7b1fa2"/>
+  <text x="270" y="125" text-anchor="middle" font-size="12" fill="#333">📊 MonitorView</text>
+  
+  <rect x="350" y="100" width="120" height="50" rx="5" fill="#e1bee7" stroke="#7b1fa2"/>
+  <text x="410" y="125" text-anchor="middle" font-size="12" fill="#333">🎮 ControlView</text>
+  
+  <rect x="490" y="100" width="130" height="50" rx="5" fill="#e1bee7" stroke="#7b1fa2"/>
+  <text x="555" y="125" text-anchor="middle" font-size="12" fill="#333">📜 HistoryView</text>
+  
+  <!-- App 核心 -->
+  <rect x="380" y="200" width="200" height="55" rx="5" fill="#fff" stroke="#333" stroke-width="2"/>
+  <text x="480" y="222" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">⚛️ App.tsx</text>
+  <text x="480" y="240" text-anchor="middle" font-size="10" fill="#666">路由管理 | 状态管理 | 会话计时</text>
+  
+  <!-- 组件层 -->
+  <rect x="30" y="285" width="650" height="110" rx="8" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+  <text x="50" y="310" font-size="15" font-weight="bold" fill="#1976d2">🧩 组件层 (Components)</text>
+  
+  <rect x="70" y="330" width="130" height="50" rx="5" fill="#bbdefb" stroke="#1976d2"/>
+  <text x="135" y="350" text-anchor="middle" font-size="11" fill="#333">📹 CarVideoFeed</text>
+  <text x="135" y="368" text-anchor="middle" font-size="9" fill="#666">MJPEG 视频流</text>
+  
+  <rect x="220" y="330" width="130" height="50" rx="5" fill="#bbdefb" stroke="#1976d2"/>
+  <text x="285" y="350" text-anchor="middle" font-size="11" fill="#333">🗺️ MapContainer</text>
+  <text x="285" y="368" text-anchor="middle" font-size="9" fill="#666">百度地图 3D</text>
+  
+  <rect x="370" y="330" width="130" height="50" rx="5" fill="#bbdefb" stroke="#1976d2"/>
+  <text x="435" y="350" text-anchor="middle" font-size="11" fill="#333">仪表盘 UI</text>
+  <text x="435" y="368" text-anchor="middle" font-size="9" fill="#666">G29 数据可视化</text>
+  
+  <rect x="520" y="330" width="130" height="50" rx="5" fill="#bbdefb" stroke="#1976d2"/>
+  <text x="585" y="350" text-anchor="middle" font-size="11" fill="#333">VideoFeed</text>
+  <text x="585" y="368" text-anchor="middle" font-size="9" fill="#666">备用视频组件</text>
+  
+  <!-- 服务层 -->
+  <rect x="30" y="425" width="900" height="110" rx="8" fill="#fff3e0" stroke="#f57c00" stroke-width="2"/>
+  <text x="50" y="450" font-size="15" font-weight="bold" fill="#f57c00">⚙️ 服务层 (Services)</text>
+  
+  <rect x="70" y="470" width="170" height="55" rx="5" fill="#ffe0b2" stroke="#f57c00"/>
+  <text x="155" y="490" text-anchor="middle" font-size="11" font-weight="bold" fill="#333">vehicleConnection.ts</text>
+  <text x="155" y="508" text-anchor="middle" font-size="9" fill="#666">遥测数据 (WebSocket 模拟)</text>
+  
+  <rect x="260" y="470" width="150" height="55" rx="5" fill="#ffe0b2" stroke="#f57c00"/>
+  <text x="335" y="490" text-anchor="middle" font-size="11" font-weight="bold" fill="#333">carControl.ts</text>
+  <text x="335" y="508" text-anchor="middle" font-size="9" fill="#666">HTTP 控制指令 | 小车 IP</text>
+  
+  <rect x="430" y="470" width="140" height="55" rx="5" fill="#ffe0b2" stroke="#f57c00"/>
+  <text x="500" y="490" text-anchor="middle" font-size="11" fill="#333">📡 WebSocket 模拟</text>
+  <text x="500" y="508" text-anchor="middle" font-size="9" fill="#666">200ms 数据更新</text>
+  
+  <rect x="590" y="470" width="150" height="55" rx="5" fill="#ffe0b2" stroke="#f57c00"/>
+  <text x="665" y="490" text-anchor="middle" font-size="11" fill="#333">🔄 视频流代理</text>
+  <text x="665" y="508" text-anchor="middle" font-size="9" fill="#666">localhost:8001 | MJPEG</text>
+  
+  <rect x="760" y="470" width="150" height="55" rx="5" fill="#ffe0b2" stroke="#f57c00"/>
+  <text x="835" y="490" text-anchor="middle" font-size="11" fill="#333">G29 WebSocket</text>
+  <text x="835" y="508" text-anchor="middle" font-size="9" fill="#666">localhost:8080</text>
+  
+  <!-- 数据层 -->
+  <rect x="30" y="565" width="450" height="90" rx="8" fill="#e8f5e9" stroke="#388e3c" stroke-width="2"/>
+  <text x="50" y="590" font-size="15" font-weight="bold" fill="#388e3c">📦 数据层 (Types)</text>
+  
+  <rect x="70" y="605" width="120" height="40" rx="5" fill="#c8e6c9" stroke="#388e3c"/>
+  <text x="130" y="628" text-anchor="middle" font-size="10" fill="#333">VehicleTelemetry</text>
+  
+  <rect x="210" y="605" width="120" height="40" rx="5" fill="#c8e6c9" stroke="#388e3c"/>
+  <text x="270" y="628" text-anchor="middle" font-size="10" fill="#333">VehicleStatus</text>
+  
+  <rect x="350" y="605" width="120" height="40" rx="5" fill="#c8e6c9" stroke="#388e3c"/>
+  <text x="410" y="628" text-anchor="middle" font-size="10" fill="#333">DriveSessionLog</text>
+  
+  <!-- 外部系统 -->
+  <rect x="710" y="285" width="380" height="370" rx="8" fill="#fce4ec" stroke="#c2185b" stroke-width="2" stroke-dasharray="5,5"/>
+  <text x="900" y="310" text-anchor="middle" font-size="15" font-weight="bold" fill="#c2185b">🔗 外部系统</text>
+  
+  <rect x="745" y="330" width="150" height="50" rx="5" fill="#f8bbd9" stroke="#c2185b"/>
+  <text x="820" y="350" text-anchor="middle" font-size="11" fill="#333">🚗 小车端</text>
+  <text x="820" y="368" text-anchor="middle" font-size="9" fill="#666">robot_web_control.py</text>
+  <text x="820" y="380" text-anchor="middle" font-size="9" fill="#666">端口:8000/mjpeg</text>
+  
+  <rect x="915" y="330" width="150" height="50" rx="5" fill="#f8bbd9" stroke="#c2185b"/>
+  <text x="990" y="350" text-anchor="middle" font-size="11" fill="#333">🔄 视频流代理</text>
+  <text x="990" y="368" text-anchor="middle" font-size="9" fill="#666">video-proxy-lowlatency</text>
+  <text x="990" y="380" text-anchor="middle" font-size="9" fill="#666">端口:8001</text>
+  
+  <rect x="745" y="400" width="150" height="50" rx="5" fill="#f8bbd9" stroke="#c2185b"/>
+  <text x="820" y="420" text-anchor="middle" font-size="11" fill="#333">🎮 G29 服务</text>
+  <text x="820" y="438" text-anchor="middle" font-size="9" fill="#666">g29-server.cjs</text>
+  <text x="820" y="450" text-anchor="middle" font-size="9" fill="#666">WebSocket:8080</text>
+  
+  <rect x="915" y="400" width="150" height="50" rx="5" fill="#f8bbd9" stroke="#c2185b"/>
+  <text x="990" y="420" text-anchor="middle" font-size="11" fill="#333">🗺️ 百度地图 API</text>
+  <text x="990" y="438" text-anchor="middle" font-size="9" fill="#666">GL JS SDK</text>
+  <text x="990" y="450" text-anchor="middle" font-size="9" fill="#666">index.html 引入</text>
+  
+  <rect x="830" y="470" width="150" height="50" rx="5" fill="#f8bbd9" stroke="#c2185b"/>
+  <text x="905" y="490" text-anchor="middle" font-size="11" fill="#333">💾 LocalStorage</text>
+  <text x="905" y="508" text-anchor="middle" font-size="9" fill="#666">小车 IP 配置</text>
+  <text x="905" y="520" text-anchor="middle" font-size="9" fill="#666">历史接管记录</text>
+  
+  <!-- 技术栈 -->
+  <rect x="30" y="680" width="190" height="75" rx="8" fill="#fff9c4" stroke="#fbc02d" stroke-width="2"/>
+  <text x="125" y="703" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">🛠️ 技术栈</text>
+  <text x="125" y="723" text-anchor="middle" font-size="10" fill="#666">⚛️ React 19.2</text>
+  <text x="125" y="738" text-anchor="middle" font-size="10" fill="#666">📘 TypeScript</text>
+  <text x="125" y="753" text-anchor="middle" font-size="10" fill="#666">⚡ Vite 7.2 | Lucide</text>
+  
+  <!-- 视频流架构图 -->
+  <rect x="240" y="680" width="450" height="75" rx="8" fill="#e0f7fa" stroke="#00796b" stroke-width="2"/>
+  <text x="465" y="700" text-anchor="middle" font-size="12" font-weight="bold" fill="#00796b">📹 视频流架构 (HTTP MJPEG)</text>
+  
+  <rect x="260" y="715" width="90" height="30" rx="3" fill="#b2ebf2" stroke="#00796b"/>
+  <text x="305" y="735" text-anchor="middle" font-size="9" fill="#333">小车:8000</text>
+  
+  <line x1="350" y1="730" x2="370" y2="730" stroke="#00796b" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="360" y="722" text-anchor="middle" font-size="8" fill="#00796b">MJPEG</text>
+  
+  <rect x="375" y="715" width="90" height="30" rx="3" fill="#b2ebf2" stroke="#00796b"/>
+  <text x="420" y="735" text-anchor="middle" font-size="9" fill="#333">代理:8001</text>
+  
+  <line x1="465" y1="730" x2="485" y2="730" stroke="#00796b" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="475" y="722" text-anchor="middle" font-size="8" fill="#00796b">转发</text>
+  
+  <rect x="490" y="715" width="90" height="30" rx="3" fill="#b2ebf2" stroke="#00796b"/>
+  <text x="535" y="735" text-anchor="middle" font-size="9" fill="#333">CarVideoFeed</text>
+  
+  <line x1="580" y1="730" x2="600" y2="730" stroke="#00796b" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="590" y="722" text-anchor="middle" font-size="8" fill="#00796b">img 标签</text>
+  
+  <rect x="605" y="715" width="70" height="30" rx="3" fill="#b2ebf2" stroke="#00796b"/>
+  <text x="640" y="735" text-anchor="middle" font-size="9" fill="#333">浏览器</text>
+  
+  <!-- 箭头 -->
+  <line x1="480" y1="255" x2="480" y2="280" stroke="#666" stroke-width="2" marker-end="url(#arrow2)"/>
+  <line x1="480" y1="150" x2="480" y2="195" stroke="#666" stroke-width="2" marker-end="url(#arrow2)"/>
+  <line x1="335" y1="525" x2="820" y2="380" stroke="#f57c00" stroke-width="2" stroke-dasharray="3,3" marker-end="url(#arrow2)"/>
+  <text x="520" y="495" font-size="9" fill="#f57c00">HTTP 控制</text>
+  
+  <line x1="665" y1="525" x2="200" y2="380" stroke="#f57c00" stroke-width="2" stroke-dasharray="3,3" marker-end="url(#arrow2)"/>
+  <text x="480" y="500" font-size="9" fill="#f57c00">MJPEG 流</text>
+  
+  <line x1="820" y1="450" x2="500" y2="380" stroke="#c2185b" stroke-width="2" stroke-dasharray="3,3" marker-end="url(#arrow2)"/>
+  <text x="680" y="440" font-size="9" fill="#c2185b">G29 数据</text>
+</svg>

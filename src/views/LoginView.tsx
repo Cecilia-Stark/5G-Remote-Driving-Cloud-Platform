@@ -1,13 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Car, User, Lock, Mail, ArrowRight, Loader2 } from 'lucide-react';
 
 interface LoginViewProps {
   onLoginSuccess: (username: string) => void;
 }
 
-// 核心修复: 模拟一个内存数据库
-const MOCK_USER_DB: Record<string, string> = {
-    'admin': '123456' // 这是一个内置的默认账号
+// 模拟数据库 - 使用 localStorage 持久化存储
+const DB_KEY = 'cloudrive_user_db';
+
+// 从 localStorage 读取用户数据库
+const getUserDB = (): Record<string, { password: string; email: string }> => {
+  const saved = localStorage.getItem(DB_KEY);
+  if (saved) {
+    try {
+      return JSON.parse(saved);
+    } catch {
+      return { admin: { password: '123456', email: 'admin@example.com' } };
+    }
+  }
+  // 默认管理员账户
+  return { admin: { password: '123456', email: 'admin@example.com' } };
+};
+
+// 保存用户数据库到 localStorage
+const saveUserDB = (db: Record<string, { password: string; email: string }>) => {
+  localStorage.setItem(DB_KEY, JSON.stringify(db));
 };
 
 export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
@@ -20,6 +37,19 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  // 检查是否已登录
+  useEffect(() => {
+    const savedUser = localStorage.getItem('cloudrive_current_user');
+    if (savedUser) {
+      try {
+        const user = JSON.parse(savedUser);
+        if (user && user.username) {
+          onLoginSuccess(user.username);
+        }
+      } catch {}
+    }
+  }, [onLoginSuccess]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,9 +78,20 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
         
         // 模拟向后端发送注册请求
         setTimeout(() => {
-            MOCK_USER_DB[username] = password;
+            const userDB = getUserDB();
+            
+            // 检查用户是否已存在
+            if (userDB[username]) {
+                setError("用户名已存在");
+                setIsLoading(false);
+                return;
+            }
+            
+            // 保存新用户
+            userDB[username] = { password, email };
+            saveUserDB(userDB);
 
-            console.log("注册成功，用户数据已保存:", { username });
+            console.log("注册成功，用户数据已保存:", { username, email });
             setIsLoading(false);
             setIsRegistering(false); // 切换回登录页
             alert("注册成功！请使用刚才设置的密码登录。");
@@ -62,11 +103,14 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
     } else {
         // --- 登录流程 ---
         setTimeout(() => {
-            const storedPassword = MOCK_USER_DB[username];
+            const userDB = getUserDB();
+            const userData = userDB[username];
 
             // 校验密码
-            if (storedPassword && storedPassword === password) { 
+            if (userData && userData.password === password) { 
                 console.log("登录成功");
+                // 保存当前用户到 localStorage
+                localStorage.setItem('cloudrive_current_user', JSON.stringify({ username, email: userData.email }));
                 onLoginSuccess(username);
             } else {
                 setError("用户名或密码错误");
@@ -219,7 +263,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
       
       {/* 底部版权信息 */}
       <div className="absolute bottom-4 text-center text-slate-600 text-xs w-full">
-         &copy; 2024 中汽创智科技有限公司 (CAIC). All Rights Reserved.
+         © 2024 CloudDrive Pilot. All Rights Reserved.
       </div>
     </div>
   );
