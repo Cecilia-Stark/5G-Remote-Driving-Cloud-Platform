@@ -1,31 +1,31 @@
 @echo off
 chcp 65001 >nul
-title 端口清理工具
+title Port Cleaner
 
 cls
 echo ========================================
-echo   端口清理工具
+echo   Port Cleaner (8080 ^& 8001)
 echo ========================================
 echo.
 
-echo 正在检查端口占用...
+echo Checking port usage...
 echo.
 
-REM 杀死占用 8080 端口的进程
+REM Kill process on port 8080
 for /f "tokens=5" %%a in ('netstat -aon ^| findstr :8080') do (
-    echo [8080] 正在清理进程：%%a
+    echo [8080] Killing process: %%a
     taskkill /F /PID %%a 2>nul
 )
 
-REM 杀死占用 8001 端口的进程
+REM Kill process on port 8001
 for /f "tokens=5" %%a in ('netstat -aon ^| findstr :8001') do (
-    echo [8001] 正在清理进程：%%a
+    echo [8001] Killing process: %%a
     taskkill /F /PID %%a 2>nul
 )
 
 echo.
 echo ========================================
-echo   清理完成！
+echo   Cleanup Complete!
 echo ========================================
 echo.
 pause

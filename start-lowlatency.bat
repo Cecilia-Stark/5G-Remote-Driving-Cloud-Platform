@@ -1,26 +1,26 @@
 @echo off
 chcp 65001 >nul
-title 超低延迟视频流代理
+title Video Proxy Server
 
 cls
 echo ========================================
-echo   超低延迟视频流代理服务器
+echo   Video Proxy Server (Ultra Low Latency)
 echo ========================================
 echo.
 
-REM 设置小车 IP（请根据实际情况修改）
+REM Set Car IP (modify if needed)
 set CAR_IP=192.168.0.5
 
-echo 配置信息:
-echo   小车 IP: %CAR_IP%
-echo   本地端口：8001
+echo Configuration:
+echo   Car IP:   %CAR_IP%
+echo   Port:     8001
 echo.
-echo 正在启动...
+echo Starting...
 echo.
 
-REM 启动代理服务器
+REM Start Proxy Server
 node video-proxy-ultra.cjs
 
 echo.
-echo 代理服务器已关闭
+echo Proxy server stopped.
 pause
