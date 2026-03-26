@@ -1,6 +1,6 @@
 @echo off
 echo ========================================
-echo   低延迟视频流代理服务器
+echo   超低延迟视频流代理服务器
 echo ========================================
 echo.
 
@@ -15,7 +15,7 @@ echo 正在启动...
 echo.
 
 REM 启动代理服务器
-node video-proxy-lowlatency.cjs
+node video-proxy-ultra.cjs
 
 echo.
 echo 代理服务器已关闭
